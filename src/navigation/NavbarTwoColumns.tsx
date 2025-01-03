@@ -25,7 +25,15 @@ const NavbarTwoColumns = (props: INavbarProps) => (
         }
 
         .navbar :global(li:not(:last-child)) {
-          @apply mr-5;
+          @apply mr-10 text-blue-600;
+        }
+
+        .navbar :global(li:not(:last-child)):hover {
+          @apply underline;
+        }
+
+        .navbar :global(li:not(:first-child)):hover {
+          @apply underline;
         }
       `}
     </style>

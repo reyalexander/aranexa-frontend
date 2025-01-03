@@ -19,6 +19,12 @@ const Hero = () => (
         <li>
           <Link href="/">Sign in</Link>
         </li>
+        <li>
+          <Link href="/">Sobre Nosotros</Link>
+        </li>
+        <li>
+          <Link href="/">Home</Link>
+        </li>
       </NavbarTwoColumns>
     </Section>
 
@@ -27,13 +33,22 @@ const Hero = () => (
         title={
           <>
             {'The modern landing page for\n'}
-            <span className="text-primary-500">React developers</span>
+            <span className="text-primary-500">ARANEXA</span>
           </>
         }
         description="The easiest way to build a React landing page in seconds."
-        button={
-          <Link href="https://creativedesignsguru.com/category/nextjs/">
-            <Button xl>Download Your Free Theme</Button>
+        button_analisis={
+          /* Cambiamos el href al formulario inicial */
+          <Link href="/wizard">
+            <Button xl>Analisis Gratis</Button>
+          </Link>
+        }
+        button_cita={
+          /* Puedes dejar tu link original o ajustarlo */
+          <Link href="/contact">
+            <Button variant="secondary" xl>
+              Agenda tu cita
+            </Button>
           </Link>
         }
       />

@@ -75,11 +75,11 @@ export default function WizardPage() {
   // Cierra el modal y redirige al menú principal
   const handleCloseModal = () => {
     setShowSuccessModal(false);
-    router.push('/'); // Redirección a la raíz
+    router.push('/company-form'); // Redirige al formulario de empresa
   };
 
   return (
-    <div className="mx-auto mt-10 max-w-xl rounded bg-white p-4 shadow-md">
+    <div className="mx-auto mt-10 max-w-xl rounded bg-zinc-900 p-6 text-gray-100 shadow-md">
       <h1 className="mb-4 text-2xl font-bold">Registro de Usuario (Paso 1)</h1>
 
       {message && (
@@ -98,7 +98,7 @@ export default function WizardPage() {
           <label className="block text-sm font-medium">Nombre Completo</label>
           <input
             type="text"
-            className="w-full rounded border p-2"
+            className="w-full rounded border-none bg-zinc-800 p-2 focus:ring-2 focus:ring-indigo-500"
             {...register('full_name')}
           />
           {errors.full_name && (
@@ -111,7 +111,7 @@ export default function WizardPage() {
           <label className="block text-sm font-medium">Email</label>
           <input
             type="email"
-            className="w-full rounded border p-2"
+            className="w-full rounded border-none bg-zinc-800 p-2 focus:ring-2 focus:ring-indigo-500"
             {...register('email')}
           />
           {errors.email && (
@@ -124,7 +124,7 @@ export default function WizardPage() {
           <label className="block text-sm font-medium">Año de Nacimiento</label>
           <input
             type="number"
-            className="w-full rounded border p-2"
+            className="w-full rounded border-none bg-zinc-800 p-2 focus:ring-2 focus:ring-indigo-500"
             {...register('year_birthday', { valueAsNumber: true })}
           />
           {errors.year_birthday && (
@@ -139,7 +139,7 @@ export default function WizardPage() {
           <label className="block text-sm font-medium">Nacionalidad</label>
           <input
             type="text"
-            className="w-full rounded border p-2"
+            className="w-full rounded border-none bg-zinc-800 p-2 focus:ring-2 focus:ring-indigo-500"
             {...register('nationality')}
           />
           {errors.nationality && (
@@ -151,7 +151,7 @@ export default function WizardPage() {
         <div>
           <label className="block text-sm font-medium">Género</label>
           <select
-            className="w-full rounded border p-2"
+            className="w-full rounded border-none bg-zinc-800 p-2 focus:ring-2 focus:ring-indigo-500"
             {...register('gender', { valueAsNumber: true })}
           >
             <option value="">Seleccionar</option>
@@ -170,7 +170,7 @@ export default function WizardPage() {
         <div>
           <label className="block text-sm font-medium">Nivel de Estudio</label>
           <select
-            className="w-full rounded border p-2"
+            className="w-full rounded border-none bg-zinc-800 p-2 focus:ring-2 focus:ring-indigo-500"
             {...register('level_of_study', { valueAsNumber: true })}
           >
             <option value="">Seleccionar</option>
@@ -218,7 +218,7 @@ export default function WizardPage() {
           <label className="block text-sm font-medium">Puesto actual</label>
           <input
             type="text"
-            className="w-full rounded border p-2"
+            className="w-full rounded border-none bg-zinc-800 p-2 focus:ring-2 focus:ring-indigo-500"
             {...register('current_position')}
           />
           {errors.current_position && (
@@ -234,7 +234,7 @@ export default function WizardPage() {
           disabled={isSubmitting}
           className="rounded bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
         >
-          {isSubmitting ? 'Enviando...' : 'Enviar'}
+          {isSubmitting ? 'Enviando...' : 'Continuar'}
         </button>
       </form>
       {/* MODAL DE ÉXITO */}
@@ -249,7 +249,7 @@ export default function WizardPage() {
               onClick={handleCloseModal}
               className="rounded bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
             >
-              Ir al menú principal
+              Siguiente Formulario
             </button>
           </div>
         </div>

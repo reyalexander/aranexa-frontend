@@ -40,7 +40,7 @@ const Hero = () => (
         button_analisis={
           /* Cambiamos el href al formulario inicial */
           <Link href="/wizard">
-            <Button xl>Analisis Gratis</Button>
+            <Button xl>Recursos Personalizado \n (Prueba gratuita)</Button>
           </Link>
         }
         button_cita={

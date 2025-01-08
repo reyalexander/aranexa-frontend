@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { SortableGoals } from '@/components/SortableGoals';
 import type { CompanyBrandType } from '@/lib/company-brand';
 import { CompanyBrandSchema } from '@/lib/company-brand';
 
@@ -15,6 +16,7 @@ export default function CompanyForm() {
 
   const router = useRouter();
 
+  // Opciones de checkbox y metas
   const SOCIAL_MEDIA_OPTIONS = [
     'Espacio físico (oficina, tienda, consultorio, etc.)',
     'Facebook',
@@ -37,13 +39,32 @@ export default function CompanyForm() {
     'Ampliar mi alcance, llegar a nuevos sectores',
   ];
 
+  // 1. useForm con "defaultValues"
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<CompanyBrandType>({
     resolver: zodResolver(CompanyBrandSchema),
+    defaultValues: {
+      brand_information: '',
+      brand_name_registered: undefined,
+      currently_present_media: [],
+      goals_achieve: GOALS_OPTIONS,
+    },
   });
+
+  // 2. Asegurarnos de que sea un array
+  const goalsValue = watch('goals_achieve') ?? [];
+
+  // Actualiza "goals_achieve" cuando se reordena
+  const handleGoalsChange = (newArray: string[]) => {
+    setValue('goals_achieve', newArray, {
+      shouldValidate: true,
+    });
+  };
 
   const onSubmit = async (data: CompanyBrandType) => {
     try {
@@ -54,9 +75,7 @@ export default function CompanyForm() {
         'http://localhost:8000/api/v1/company/company_brand/',
         {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
         },
       );
@@ -76,7 +95,7 @@ export default function CompanyForm() {
 
   const handleCloseModal = () => {
     setShowSuccessModal(false);
-    router.push('/'); // Cambia esto a la siguiente ruta si tienes más pasos en el wizard
+    router.push('/'); // Redirige a otra ruta si es necesario
   };
 
   return (
@@ -94,7 +113,7 @@ export default function CompanyForm() {
       )}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {/* Datos de la empresa */}
+        {/* 1. Nombre Comercial */}
         <div>
           <label className="mb-1 block text-sm font-semibold">
             Nombre Comercial
@@ -111,7 +130,7 @@ export default function CompanyForm() {
           )}
         </div>
 
-        {/* El nombre de mi marca está registrada legalmente */}
+        {/* 2. Marca registrada */}
         <div>
           <label className="mb-1 block text-sm font-medium">
             El nombre de mi marca está registrada legalmente
@@ -132,7 +151,7 @@ export default function CompanyForm() {
           )}
         </div>
 
-        {/* Social Media CHECKBOXES SELECT */}
+        {/* 3. Redes / medios */}
         <div>
           <h2 className="mb-2 text-sm font-semibold">
             Actualmente tengo presencia en los siguientes medios:
@@ -146,7 +165,7 @@ export default function CompanyForm() {
                 <input
                   type="checkbox"
                   value={option}
-                  {...register('currently_present_media')} // Nombre del campo
+                  {...register('currently_present_media')}
                   className="size-4 rounded border-gray-400 bg-zinc-800 text-indigo-600 focus:ring-indigo-500"
                 />
                 <span className="text-sm">{option}</span>
@@ -160,52 +179,47 @@ export default function CompanyForm() {
           )}
         </div>
 
-        {/* Principales retos CHECKBOXES SELECT */}
+        {/* 4. Metas a conseguir (ordenable) */}
         <div>
-          <h2 className="mb-2 text-sm font-semibold">
-            Cuáles son los principales retos que enfrenta mi negocio
-          </h2>
-          <label className="mb-1 block text-xs font-light text-gray-500">
-            Escoge los tres principales.
-          </label>
-          <div className="space-y-2">
-            {GOALS_OPTIONS.map((option) => {
-              return (
-                <label key={option} className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    value={option}
-                    {...register('goals_achieve')}
-                    className="size-4 rounded border-gray-400 bg-zinc-800 text-indigo-600 focus:ring-indigo-500
-                           disabled:cursor-not-allowed disabled:opacity-50"
-                  />
-                  <span className="text-sm">{option}</span>
-                </label>
-              );
-            })}
-          </div>
+          <label className="text-lg font-bold">Mis metas a conseguir son</label>
+          <p className="text-sm text-gray-400">
+            Ordena las siguientes opciones según prioridad (1 = más importante)
+          </p>
+          <SortableGoals items={goalsValue} onChange={handleGoalsChange} />
           {errors.goals_achieve && (
-            <p className="mt-1 text-xs text-red-500">
+            <p className="mt-1 text-sm text-red-500">
               {errors.goals_achieve.message}
             </p>
           )}
         </div>
 
-        {/* Medios digitales/físicos en los que tengo presencia me están ayudando a conseguir mis metas */}
+        {/* 5. Valoración (1..5) */}
         <div>
-          <label className="mb-1 block text-sm font-semibold">
+          <label className="text-lg font-bold">
             ¿Los medios digitales/físicos en los que tengo presencia me están
             ayudando a conseguir mis metas?
           </label>
-          <input
-            type="number"
-            className="w-full rounded border-none bg-zinc-800 p-2 focus:ring-2 focus:ring-indigo-500"
-            {...register('digital_media', {
-              valueAsNumber: true,
-            })}
-          />
+          <p className="text-sm text-gray-400">
+            Selecciona 1 si no lo estoy consiguiendo, 5 si lo estoy logrando.
+          </p>
+          <div className="mt-2 flex space-x-4">
+            {[1, 2, 3, 4, 5].map((val) => (
+              <label
+                key={val}
+                className="flex cursor-pointer flex-col items-center"
+              >
+                <input
+                  type="radio"
+                  value={val}
+                  {...register('digital_media', { valueAsNumber: true })}
+                  className="mb-1 size-4 text-indigo-600 focus:ring-indigo-500"
+                />
+                <span className="text-sm">{val}</span>
+              </label>
+            ))}
+          </div>
           {errors.digital_media && (
-            <p className="mt-1 text-xs text-red-500">
+            <p className="mt-1 text-sm text-red-500">
               {errors.digital_media.message}
             </p>
           )}

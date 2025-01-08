@@ -9,7 +9,7 @@ import { SortableGoals } from '@/components/SortableGoals';
 import type { CompanyBrandType } from '@/lib/company-brand';
 import { CompanyBrandSchema } from '@/lib/company-brand';
 
-export default function CompanyForm() {
+export default function CompanyBrand() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -95,7 +95,7 @@ export default function CompanyForm() {
 
   const handleCloseModal = () => {
     setShowSuccessModal(false);
-    router.push('/'); // Redirige a otra ruta si es necesario
+    router.push('/product-form'); // Redirige a otra ruta si es necesario
   };
 
   return (

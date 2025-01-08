@@ -158,7 +158,7 @@ export default function CompanyForm() {
 
   const handleCloseModal = () => {
     setShowSuccessModal(false);
-    router.push('/'); // Cambia esto a la siguiente ruta si tienes más pasos en el wizard
+    router.push('/company-brand'); // Cambia esto a la siguiente ruta si tienes más pasos en el wizard
   };
 
   return (

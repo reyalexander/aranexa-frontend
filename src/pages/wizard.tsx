@@ -64,6 +64,8 @@ export default function WizardPage() {
 
       // Si todo salió bien, res.json() trae el usuario creado
       const newUser = await res.json();
+
+      localStorage.setItem('accountId', String(newUser.id));
       setMessage(`¡Usuario creado correctamente con ID: ${newUser.id}!`);
     } catch (err: any) {
       setMessage(`Error: ${err.message}`);

@@ -12,11 +12,11 @@ export const CompanyFormSchema = z.object({
   need_hire_staff: z.number().optional(),
   payment_vouchers: z.array(z.string()).optional(),
   main_challenges: z.array(z.string()).optional(),
-  political: z.number().optional(),
-  social: z.number().optional(),
-  economic: z.number().optional(),
-  technological: z.number().optional(),
-  environmental: z.number().optional(),
+  political: z.coerce.number().optional(),
+  social: z.coerce.number().optional(),
+  economic: z.coerce.number().optional(),
+  technological: z.coerce.number().optional(),
+  environmental: z.coerce.number().optional(),
 });
 
 export type CompanyFormType = z.infer<typeof CompanyFormSchema>;

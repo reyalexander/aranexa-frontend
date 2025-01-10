@@ -71,12 +71,19 @@ export default function CompanyBrand() {
       setIsSubmitting(true);
       setMessage(null);
 
+      const accountId = localStorage.getItem('accountId');
+
+      const finalData = {
+        ...data,
+        account_id: accountId ? parseInt(accountId, 10) : null,
+      };
+
       const res = await fetch(
         'http://localhost:8000/api/v1/company/company_brand/',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
+          body: JSON.stringify(finalData),
         },
       );
 
@@ -240,13 +247,13 @@ export default function CompanyBrand() {
           <div className="w-full max-w-sm rounded bg-white p-6 text-gray-800 shadow-lg">
             <h3 className="mb-2 text-xl font-bold">¡Datos Guardados!</h3>
             <p className="mb-4 text-sm">
-              La información de la empresa se guardó correctamente.
+              La información de la marca de tu empresa se guardó correctamente.
             </p>
             <button
               onClick={handleCloseModal}
               className="rounded bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
             >
-              Finalizar
+              Continuar
             </button>
           </div>
         </div>

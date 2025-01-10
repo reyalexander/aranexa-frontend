@@ -88,7 +88,7 @@ export default function CompanyForm() {
   const CHALLENGE_OPTIONS = [
     'Acceso a financiamiento',
     'Normas fiscales y legales complejas',
-    'Saturación de mercado (mucha competencia',
+    'Saturación de mercado (mucha competencia)',
     'Dificultad para adaptarse a nuevos entornos e integrar herramientas digitales',
     'Falta de capital humano capacitado',
     'Falta de estructura y organización interna',
@@ -116,6 +116,13 @@ export default function CompanyForm() {
       setIsSubmitting(true);
       setMessage(null);
 
+      const accountId = localStorage.getItem('accountId');
+
+      const finalData = {
+        ...data,
+        account_id: accountId ? parseInt(accountId, 10) : null,
+      };
+
       const res = await fetch(
         'http://localhost:8000/api/v1/company/company_information/',
         {
@@ -123,7 +130,7 @@ export default function CompanyForm() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(finalData),
         },
       );
 
@@ -422,9 +429,7 @@ export default function CompanyForm() {
                       <input
                         type="radio"
                         value={opt.value}
-                        {...register(ctx.field, {
-                          valueAsNumber: true,
-                        })}
+                        {...register(ctx.field)}
                         className="size-4 text-indigo-600 focus:ring-indigo-500"
                       />
                     </td>
@@ -461,7 +466,7 @@ export default function CompanyForm() {
               onClick={handleCloseModal}
               className="rounded bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
             >
-              Finalizar
+              Continuar
             </button>
           </div>
         </div>

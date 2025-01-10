@@ -38,12 +38,19 @@ export default function ClientForm() {
       setIsSubmitting(true);
       setMessage(null);
 
+      const accountId = localStorage.getItem('accountId');
+
+      const finalData = {
+        ...data,
+        account_id: accountId ? parseInt(accountId, 10) : null,
+      };
+
       const res = await fetch('http://localhost:8000/api/v1/client/clients/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(finalData),
       });
 
       if (!res.ok) {
@@ -61,7 +68,8 @@ export default function ClientForm() {
 
   const handleCloseModal = () => {
     setShowSuccessModal(false);
-    router.push('/'); // Cambia esto a la siguiente ruta si tienes más pasos en el wizard
+    const accountId = localStorage.getItem('accountId');
+    router.push(`/summary/?account_id=${accountId}`); // Cambia esto a la siguiente ruta si tienes más pasos en el wizard
   };
 
   return (

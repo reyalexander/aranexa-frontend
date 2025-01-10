@@ -2,9 +2,9 @@
 import { z } from 'zod';
 
 export const ProductSchema = z.object({
-  product_name: z.array(z.string()).optional(),
+  product_name: z.number().optional(),
   product_description: z.string().optional(),
-  created_product_from: z.array(z.string()).optional(),
+  created_product_from: z.number().optional(),
   product_invest: z.array(z.string()).optional(),
   keep_product_track: z.array(z.string()).optional(),
   price_appropiate: z.number().optional(),

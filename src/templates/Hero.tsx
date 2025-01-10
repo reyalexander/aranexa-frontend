@@ -38,14 +38,16 @@ const Hero = () => (
         }
         description="The easiest way to build a React landing page in seconds."
         button_analisis={
-          /* Cambiamos el href al formulario inicial */
           <Link href="/wizard">
-            <Button xl>Recursos Personalizado \n (Prueba gratuita)</Button>
+            <Button xl>
+              Recursos Personalizado <br />
+              <span>(Prueba gratuita)</span>
+            </Button>
           </Link>
         }
         button_cita={
           /* Puedes dejar tu link original o ajustarlo */
-          <Link href="/contact">
+          <Link href="/contact" className="mx-3">
             <Button variant="secondary" xl>
               Agenda tu cita
             </Button>

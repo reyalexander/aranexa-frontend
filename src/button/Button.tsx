@@ -3,7 +3,7 @@ import classNames from 'classnames';
 type IButtonProps = {
   xl?: boolean;
   variant?: 'primary' | 'secondary' | 'danger'; // o los que necesites
-  children: string;
+  children: React.ReactNode;
 };
 
 const Button = (props: IButtonProps) => {

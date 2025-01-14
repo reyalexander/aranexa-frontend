@@ -267,31 +267,11 @@ export default function SummaryPage() {
             </section>
           ) : null}
 
-          <div className="mt-6 flex justify-between">
-            <button
-              onClick={handleDownloadPDF}
-              className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-            >
-              Descargar PDF
-            </button>
-            <button
-              onClick={handleScraping}
-              className="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
-              disabled={isScraping}
-            >
-              {isScraping ? 'Buscando...' : 'Buscar Información'}
-            </button>
-          </div>
-
-          {scrapingError && (
-            <p className="mt-4 text-red-500">Error: {scrapingError}</p>
-          )}
-
           {scrapingResults && (
             <section className="mt-6">
               <h2 className="text-xl font-semibold">Resultados del Scraping</h2>
               <div className="mt-4 space-y-6">
-                {Object.entries(scrapingResults).map(
+                {Object.entries(scrapingResults || {}).map(
                   ([keyword, results]: any) => (
                     <div key={keyword}>
                       <h3 className="mb-2 text-lg font-bold text-gray-800">
@@ -322,6 +302,26 @@ export default function SummaryPage() {
                 )}
               </div>
             </section>
+          )}
+
+          <div className="mt-6 flex justify-between">
+            <button
+              onClick={handleDownloadPDF}
+              className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+            >
+              Descargar PDF
+            </button>
+            <button
+              onClick={handleScraping}
+              className="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+              disabled={isScraping}
+            >
+              {isScraping ? 'Buscando...' : 'Buscar Información'}
+            </button>
+          </div>
+
+          {scrapingError && (
+            <p className="mt-4 text-red-500">Error: {scrapingError}</p>
           )}
         </>
       )}

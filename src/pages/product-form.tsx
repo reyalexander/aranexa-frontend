@@ -53,7 +53,7 @@ export default function ProductForm() {
       };
 
       const res = await fetch(
-        'http://localhost:8000/api/v1/product/products/',
+        'http://3.133.157.177:8002/api/v1/product/products/',
         {
           method: 'POST',
           headers: {

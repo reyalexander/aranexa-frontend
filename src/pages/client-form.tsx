@@ -45,13 +45,16 @@ export default function ClientForm() {
         account_id: accountId ? parseInt(accountId, 10) : null,
       };
 
-      const res = await fetch('http://localhost:8000/api/v1/client/clients/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const res = await fetch(
+        'http://3.133.157.177:8002/api/v1/client/clients/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(finalData),
         },
-        body: JSON.stringify(finalData),
-      });
+      );
 
       if (!res.ok) {
         const errorData = await res.json();

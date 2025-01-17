@@ -48,7 +48,7 @@ export default function SummaryPage() {
       try {
         setIsLoading(true);
         const res = await fetch(
-          `http://localhost:8000/api/v1/user/summary/?account_id=${accountId}`,
+          `http://3.133.157.177:8002/api/v1/user/summary/?account_id=${accountId}`,
         );
         if (!res.ok) {
           throw new Error('Error al obtener los datos.');
@@ -83,7 +83,7 @@ export default function SummaryPage() {
       ];
 
       const res = await fetch(
-        `http://localhost:8000/api/v1/web-scraping/?${keywords
+        `http://3.133.157.177:8002/api/v1/web-scraping/?${keywords
           .map((keyword) => `keywords=${encodeURIComponent(keyword)}`)
           .join('&')}`,
       );
@@ -103,7 +103,7 @@ export default function SummaryPage() {
 
   const handleDownloadPDF = () => {
     window.open(
-      `http://localhost:8000/api/v1/user/summary/pdf/?account_id=${accountId}`,
+      `http://3.133.157.177:8002/api/v1/user/summary/pdf/?account_id=${accountId}`,
       '_blank',
     );
   };

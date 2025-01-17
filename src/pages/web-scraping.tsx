@@ -11,7 +11,7 @@ export default function WebScraping() {
     setMessage(null);
     try {
       const res = await fetch(
-        `http://localhost:8000/api/v1/web-scraping/?keyword=${encodeURIComponent(keyword)}`,
+        `http://3.133.157.177:8002/api/v1/web-scraping/?keyword=${encodeURIComponent(keyword)}`,
       );
       const data = await res.json();
       setResults(data);

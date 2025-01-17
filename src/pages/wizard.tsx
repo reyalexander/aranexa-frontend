@@ -47,13 +47,16 @@ export default function WizardPage() {
       setIsSubmitting(true);
       setMessage(null);
 
-      const res = await fetch('http://localhost:8000/api/v1/user/account/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const res = await fetch(
+        'http://3.133.157.177:8002/api/v1/user/account/',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
         },
-        body: JSON.stringify(data),
-      });
+      );
 
       if (!res.ok) {
         const errorData = await res.json();

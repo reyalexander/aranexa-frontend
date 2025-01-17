@@ -124,7 +124,7 @@ export default function CompanyForm() {
       };
 
       const res = await fetch(
-        'http://localhost:8000/api/v1/company/company_information/',
+        'http://3.133.157.177:8002/api/v1/company/company_information/',
         {
           method: 'POST',
           headers: {

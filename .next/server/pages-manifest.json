@@ -1,0 +1,14 @@
+{
+  "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/_error": "pages/_error.js",
+  "/client-form": "pages/client-form.html",
+  "/company-brand": "pages/company-brand.html",
+  "/": "pages/index.html",
+  "/product-form": "pages/product-form.html",
+  "/summary": "pages/summary.html",
+  "/web-scraping": "pages/web-scraping.html",
+  "/wizard": "pages/wizard.html",
+  "/company-form": "pages/company-form.html",
+  "/404": "pages/404.html"
+}

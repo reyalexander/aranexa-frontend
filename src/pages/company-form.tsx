@@ -124,7 +124,7 @@ export default function CompanyForm() {
       };
 
       const res = await fetch(
-        'http://3.133.157.177:8002/api/v1/company/company_information/',
+        `${process.env.REACT_APP_API_ENDPOINT}/company/company_information/`,
         {
           method: 'POST',
           headers: {

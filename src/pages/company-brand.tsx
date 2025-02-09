@@ -79,7 +79,7 @@ export default function CompanyBrand() {
       };
 
       const res = await fetch(
-        'http://3.133.157.177:8002/api/v1/company/company_brand/',
+        `${process.env.REACT_APP_API_ENDPOINT}/company/company_brand/`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

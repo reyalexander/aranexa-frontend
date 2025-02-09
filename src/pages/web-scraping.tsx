@@ -11,7 +11,7 @@ export default function WebScraping() {
     setMessage(null);
     try {
       const res = await fetch(
-        `http://3.133.157.177:8002/api/v1/web-scraping/?keyword=${encodeURIComponent(keyword)}`,
+        `${process.env.REACT_APP_API_ENDPOINT}/web-scraping/?keyword=${encodeURIComponent(keyword)}`,
       );
       const data = await res.json();
       setResults(data);

@@ -48,7 +48,7 @@ export default function WizardPage() {
       setMessage(null);
 
       const res = await fetch(
-        'http://3.133.157.177:8002/api/v1/user/account/',
+        `${process.env.REACT_APP_API_ENDPOINT}/user/account/`,
         {
           method: 'POST',
           headers: {

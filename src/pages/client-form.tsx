@@ -46,7 +46,7 @@ export default function ClientForm() {
       };
 
       const res = await fetch(
-        'http://3.133.157.177:8002/api/v1/client/clients/',
+        `${process.env.REACT_APP_API_ENDPOINT}/client/clients/`,
         {
           method: 'POST',
           headers: {

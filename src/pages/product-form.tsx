@@ -53,7 +53,7 @@ export default function ProductForm() {
       };
 
       const res = await fetch(
-        'http://3.133.157.177:8002/api/v1/product/products/',
+        `${process.env.REACT_APP_API_ENDPOINT}/product/products/`,
         {
           method: 'POST',
           headers: {

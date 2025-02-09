@@ -18,7 +18,11 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@hookform/resolvers": "^3.9.1",
+    "@radix-ui/react-slot": "^1.1.2",
+    "class-variance-authority": "^0.7.1",
     "classnames": "^2.5.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.475.0",
     "next": "^14.1.0",
     "next-js-boilerplate": "file:",
     "next-seo": "^6.4.0",
@@ -27,6 +31,8 @@
     "react-hook-form": "^7.54.2",
     "react-select": "^5.9.0",
     "styled-jsx-plugin-postcss": "^4.0.1",
+    "tailwind-merge": "^3.0.1",
+    "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.1"
   },
   "devDependencies": {

@@ -14,8 +14,8 @@
 /coverage
 
 # next.js
-#/.next/
-#/out/
+/.next/
+/out/
 
 # production
 /build
@@ -120,8 +120,8 @@ web_modules/
 .parcel-cache
 
 # Next.js build output
-#.next
-#out
+.next
+out
 
 # Nuxt.js build / generate output
 .nuxt
